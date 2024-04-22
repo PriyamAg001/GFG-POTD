@@ -1,0 +1,26 @@
+Code:
+
+class Solution {
+  public:
+    int minRow(int n, int m, vector<vector<int>> a) {
+        // code here
+        int rowSize = a.size();
+        int colSize = a[0].size();
+        int minCount = INT_MAX;
+        int minRowIndex = -1;
+        
+        for(int i=0; i<rowSize; i++){
+            int count = 0;
+            for(int j=0; j<colSize; j++){
+                if(a[i][j] == 1){
+                    count += 1;
+                }
+            }
+            if(count < minCount){
+                minCount = count;
+                minRowIndex = i;
+            }
+        }
+        return minRowIndex + 1; // Adding 1 to make it 1-indexed
+    }
+};
