@@ -1,0 +1,22 @@
+Code:
+
+class Solution {
+    public:
+    int firstElement(int n){
+        int mod = 1000000007;
+        // Base Case:
+        if(n <= 2){
+            return 1;
+        }
+        int one = 1;
+        int two = 1;
+        int sum = 0;
+        
+        for(int i=3; i<=n; i++){
+            sum = (one + two) % mod;
+            one = two;
+            two = sum;
+        }
+        return sum;
+    }
+};
