@@ -1,0 +1,25 @@
+Code:
+
+class Solution{
+public:
+    int solve(int x, int y, vector<vector<int>>& dp){
+        // Base Case:
+        if(x == 0 || y == 0){
+            return 1;
+        }
+        
+        if(dp[x][y] != -1){
+            return dp[x][y];
+        }
+        
+        int mod = 1000000007;
+        dp[x][y] = (solve(x-1, y, dp) % mod + solve(x, y-1, dp) % mod) % mod;
+        return dp[x][y];
+    }
+
+    int ways(int x, int y){
+        // Create DP:
+        vector<vector<int>> dp(x+1, vector<int>(y+1, -1));
+        return solve(x, y, dp);
+    }
+};
