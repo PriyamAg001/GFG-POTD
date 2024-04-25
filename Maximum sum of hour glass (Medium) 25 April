@@ -8,13 +8,21 @@ class Solution {
             return -1;
         }
         
-        int ans = INT_MIN;
-        for(int i=0; i<n-2; i++){
-            for(int j=0; j<m-2; j++){
-                int sum = mat[i][j] + mat[i][j+1] + mat[i][j+2] + mat[i+1][j+1] + mat[i+2][j] + mat[i+2][j+1] + mat[i+2][j+2];
-                ans = max(sum, ans);
+        int maxSum = 0;
+        for(int i = 0; i < n-2; ++i){
+            for(int j = 0; j < m-2; ++j){
+                int currSum = 0;
+                // for first row
+                currSum += mat[i][j] + mat[i][j+1] + mat[i][j+2];
+                // for last row
+                currSum += mat[i+2][j] + mat[i+2][j+1] + mat[i+2][j+2];
+                // for middle element
+                currSum += mat[i+1][j+1];
+                
+                maxSum = max(maxSum, currSum);
             }
         }
-        return ans;
+        return maxSum;
     }
 };
+
